@@ -1,4 +1,0 @@
-package CoffeeMachine
-
-class Shugar {
-}

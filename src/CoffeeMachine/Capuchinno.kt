@@ -1,11 +1,13 @@
 package CoffeeMachine
 
-class Late{
+class Capuchinno{
 
     fun getPrice(count: Double,
-                 sugarCount: Boolean): Double{
+                 milkCount: Boolean,
+                 sugarCount: Boolean,
+                 cinCount: Boolean): Double{
 
-        val name: String = "Late"
+        val name: String = "Capuchinno"
         val basePrice: Double = 2.0
         val dose: Double = count
         var price: Double = basePrice * dose
@@ -16,8 +18,17 @@ class Late{
         val sugar = Sugar()
         val sugarPrice = sugar.getPrice(dose)
 
+        val cin = Cinnamon()
+        val cinPrice = cin.getPrice(dose)
+
+        if(milkCount == true) {
+            price += milkPrice
+        }
         if (sugarCount){
             price += sugarPrice
+        }
+        if (cinCount){
+            price += cinPrice
         }
 
         println(name)
