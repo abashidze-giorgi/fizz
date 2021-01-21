@@ -1,14 +1,16 @@
 package CoffeeMachine
 
+import kotlin.reflect.jvm.internal.impl.load.java.Constant
+
 class Late{
 
     fun getPrice(count: Double,
                  sugarCount: Boolean): Double{
 
         val name: String = "Late"
-        val basePrice: Double = 2.0
+
         val dose: Double = count
-        var price: Double = basePrice * dose
+        var price: Double = Companion.basePrice * dose
 
         val milk = Milk()
         val milkPrice = milk.getPrice(dose)
@@ -23,5 +25,9 @@ class Late{
         println(name)
         println("${dose} dose - ${price} $")
         return price
+    }
+
+    companion object {
+        private const val basePrice: Double = 2.0
     }
 }

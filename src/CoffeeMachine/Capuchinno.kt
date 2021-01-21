@@ -8,9 +8,9 @@ class Capuchinno{
                  cinCount: Boolean): Double{
 
         val name: String = "Capuchinno"
-        val basePrice: Double = 2.0
+
         val dose: Double = count
-        var price: Double = basePrice * dose
+        var price: Double = Companion.basePrice * dose
 
         val milk = Milk()
         val milkPrice = milk.getPrice(dose)
@@ -34,5 +34,9 @@ class Capuchinno{
         println(name)
         println("${dose} dose - ${price} $")
         return price
+    }
+
+    companion object {
+        private const val basePrice: Double = 2.0
     }
 }
