@@ -2,9 +2,14 @@ package CoffeeMachine
 
 import java.util.*
 
-fun Answer(item: String):Boolean{
+fun Answer(question: String):Boolean {
     var bool: Boolean = false
-    print("${item}? 'y', 'n'")
-    bool = Scanner(System. `in`).next().toLowerCase() == "y"
+    var answer: String = ""
+    while (answer != "y" || answer != "n") {
+        answer = Scanner(System.`in`).toString().toLowerCase()
+        if (answer == "y") bool = true
+    }
+
+    print("${question}? 'y', 'n'")
     return bool
 }

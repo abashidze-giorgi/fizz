@@ -1,11 +1,13 @@
 package CoffeeMachine
 
-class Capuchinno{
+class Capuchinno {
 
-    fun getPrice(count: Double,
-                 milkCount: Boolean,
-                 sugarCount: Boolean,
-                 cinCount: Boolean): Double{
+    fun getPrice(
+        count: Double,
+        milkCount: Boolean,
+        sugarCount: Boolean,
+        cinCount: Boolean,
+    ): Double {
 
         val name: String = "Capuchinno"
 
@@ -21,15 +23,9 @@ class Capuchinno{
         val cin = Cinnamon()
         val cinPrice = cin.getPrice(dose)
 
-        if(milkCount == true) {
-            price += milkPrice
-        }
-        if (sugarCount){
-            price += sugarPrice
-        }
-        if (cinCount){
-            price += cinPrice
-        }
+        if (milkCount) price += milkPrice
+        if (sugarCount) price += sugarPrice
+        if (cinCount) price += cinPrice
 
         println(name)
         println("${dose} dose - ${price} $")

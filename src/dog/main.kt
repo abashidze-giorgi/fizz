@@ -9,16 +9,14 @@ fun main() {
     myDog.bark()
     */
 
-    val dogs = arrayOf(Dog("Tobi", 8, 21, "Mixed"),
-                       Dog("Alpha", 5, 28,"Poddle"))
+    val dogs = arrayOf(Dog("Tobi", 8, "Mixed"),
+                       Dog("Alpha", 5, "Poddle"))
 
     println(dogs[0].name)
-    println(dogs[0].age)
     println(dogs[0].weight)
     println(dogs[0].breed)
     dogs[0].bark()
     println(dogs[1].name)
-    println(dogs[1].age)
     println(dogs[1].weight)
     println(dogs[1].breed)
     dogs[1].bark()
