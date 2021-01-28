@@ -1,5 +1,7 @@
 package CoffeeMachine
 
+
+
 open class Drink() {
 
     fun selectedCoffe() {
@@ -20,8 +22,8 @@ open class Drink() {
  */
 fun main() {
     val cofeList = CofeType.values().toList()
-    var pr = myPrint
-    val cofeInt =     //(cofeList, "Enter Your Choose: ---- ");
+    var pr = myPrint(cofeList, "Select Cofe: - ")
+//    val cofeInt =     //(cofeList, "Enter Your Choose: ---- ");
 //    print("how many cups: - ")
 //    val coffeeCount =  Scanner(System. `in`).nextDouble()
 //    if(coffee == 1){
