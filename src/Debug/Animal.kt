@@ -4,10 +4,8 @@ import java.sql.DriverManager.println
 
 /*Parent Class For All Animal Kinds*/
 abstract class Animal {
-
     private var name = ""
     private var voiceSound: String = ""
-
     open fun name(): String {
         return name
     }
@@ -19,6 +17,7 @@ abstract class Animal {
 
     /*All Animals Can Make Unique Voices In Their Own Way*/
     fun makeVoice(s: String) {
-        println(voiceSound)
+        voiceSound = s
+        println(s)
     }
 }
