@@ -1,0 +1,4 @@
+package AnimalKingdom
+
+class AnimalKingdomImpl {
+}

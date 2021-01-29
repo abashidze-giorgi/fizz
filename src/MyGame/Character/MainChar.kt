@@ -1,8 +1,27 @@
 package MyGame.Character
 
-abstract class MainChar(private val health: Double,
-                        private  val canDemage: Double,
-                        private val getDemage: Double) {
+abstract class MainChar() {
 
+   open fun Health():Double{
+       return HEALTH
+   }
 
+    open fun CanDamage():Double{
+        return CANDAMAGE
+    }
+
+    open fun GetDamage():Double{
+        return GETDAMAGE
+    }
+
+    open fun Shield():Double{
+        return SHIELD
+    }
+
+    companion object{
+        private val HEALTH = 50.0
+        private val CANDAMAGE = 1.0
+        private val GETDAMAGE = 1.0
+        private val SHIELD = 3.0
+    }
 }

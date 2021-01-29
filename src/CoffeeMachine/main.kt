@@ -3,12 +3,12 @@ package CoffeeMachine
 
 fun main() {
 
-    println(request())
-
+    val cup = CoffeeMachine()
+    println(cup)
 }
 
 
-fun request() {
-
-
-}
+//fun request() {
+//
+//
+//}

@@ -1,0 +1,5 @@
+package AnimalKingdom
+
+interface Animals {
+
+}
