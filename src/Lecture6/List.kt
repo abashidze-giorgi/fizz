@@ -30,4 +30,3 @@ fun <T> Maniac(array: Array<T>, mutableList: MutableList<T>): MutableList<T> {
     }
         return mutableList
 }
-
