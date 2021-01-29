@@ -1,33 +1,19 @@
 package CoffeeMachine
 
-import kotlin.reflect.jvm.internal.impl.load.java.Constant
 
-class Late{
+class Late(private val sugar: Sugar,
+           private val milk: Milk
+           ): Cofe, Comparable <Cofe>{
+    override fun GetSugar(): Sugar = sugar
 
-    fun getPrice(count: Double,
-                 sugarCount: Boolean): Double{
+    override fun GetMilk(): Milk = milk
 
-        val name: String = "Late"
-
-        val dose: Double = count
-        var price: Double = Companion.basePrice * dose
-
-        val milk = Milk()
-        val milkPrice = milk.getPrice(dose)
-
-        val sugar = Sugar()
-        val sugarPrice = sugar.getPrice(dose)
-
-        if (sugarCount){
-            price += sugarPrice
-        }
-
-        println(name)
-        println("${dose} dose - ${price} $")
-        return price
+    override fun Drink() {
+        println("Start Drinking Late")
     }
 
-    companion object {
-        private const val basePrice: Double = 2.0
+    override fun compareTo(other: Cofe): Int {
+        TODO("Not yet implemented")
     }
+
 }

@@ -1,19 +1,14 @@
 package CoffeeMachine
 
-import java.util.*
-
 
 fun main() {
+
+    println(request())
+
 }
 
 
-class Main() {
+fun request() {
 
-    fun getCoffee(coffeeType: Int, coffeeCount: Double, isSugar: Boolean, isMilk: Boolean, isCinnamon: Boolean){
-        if(coffeeType == 1){
-            val i = Capuchinno().getPrice(coffeeCount, isMilk, isSugar, isCinnamon)
-        }else{
-            val i = Late().getPrice(coffeeCount, isSugar)
-        }
-    }
+
 }
