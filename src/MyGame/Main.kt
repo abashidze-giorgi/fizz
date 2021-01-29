@@ -1,0 +1,4 @@
+package MyGame
+
+class Main {
+}

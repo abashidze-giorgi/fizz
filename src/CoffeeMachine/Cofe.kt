@@ -1,6 +1,6 @@
 package CoffeeMachine
 
-//
+
 //import CoffeeMachine.Milk
 //import CoffeeMachine.Sugar
 //
@@ -14,7 +14,8 @@ package CoffeeMachine
 //     protected fun IsHotOrNot(): Boolean{
 //         return true
 //     }
-//}
+// }
+
 
 interface Cofe{
     fun GetSugar(): Sugar
