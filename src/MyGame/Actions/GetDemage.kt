@@ -1,13 +1,17 @@
 package MyGame.Actions
 
-import MyGame.Units.Enemy
+import MyGame.Units.Ninja
 import MyGame.Units.Player
 
-open class GetDemage (val player:Player, val enemy: Enemy){
+open class GetDemage (val player:Player, val enemy: Ninja){
 //    val enemy = enemy
-    val enemyHero = player.enemyHero
-//    val demage = playe //TODO ვერ ვახერხებ ობიექტის იმპორტს, რომელსაც ექნება getDemage
-    val demage = player.player.unit.getDamage
+    val enemyHero = player.weaknessEnemy
+    val demage = player.unit.getDamage
+
+
+
+
+
 
 //    fun GetDemage(){
 //        val health = player.health - demage

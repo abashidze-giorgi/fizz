@@ -2,9 +2,9 @@ package MyGame.Character
 
 abstract class MainChar() {
 
-   open fun Health():Double{
-       return HEALTH
-   }
+    open fun Health():Double{
+        return HEALTH
+    }
 
     open fun CanDamage():Double{
         return CANDAMAGE

@@ -1,18 +1,14 @@
 package MyGame.Units
-import MyGame.Actions.GetDemage
-import MyGame.UnitSides.PlayerSide
 
-class Player(name:String, enemy: Enemy){
-    var name = name
-    var player = PlayerSide(name, enemy.name)
+import MyGame.Character.PlayerChar
+
+class Player(name: String, enemy: String){
+    val name = name
+    val weaknessEnemy: String = enemy
+    var unit = PlayerChar(name, enemy)
     init {
 
-        println("Player: name: ${player.name}, health: ${player.health}, " +
-                "demage: ${player.canDemage}, shield: ${player.shield}, enemyHero: ${player.enemyHero}")
+        println("Player: name: ${unit.unit}, health: ${unit.health}, " +
+                "demage: ${unit.canDemage}, shield: ${unit.shield}, weaknessEnemy: ${unit.weaknessEnemy}")
     }
-
-
-    val enemyHero: String = enemy.name
-
-//    val demage = GetDemage()
 }
