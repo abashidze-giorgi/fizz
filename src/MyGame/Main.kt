@@ -1,34 +1,65 @@
 package MyGame
 
 import MyGame.Actions.Fight
-import MyGame.Character.PlayerChar
+import MyGame.Character.NinjaChar
+import MyGame.Locations.EnemyBase
+import MyGame.Units.Enemy
 import MyGame.Units.Player
-import MyGame.Units.Ninja
+import java.io.FileNotFoundException
+import java.util.*
 
+class Enemy(){
+
+    companion object{
+    var enemyArray = mutableListOf<Enemy>() //TODO უნდა მიიღოს ყველა შექმნილი მტრის ობიექტი
+
+    }
+}
 
 fun main() {
+    ScannerScan();
+
     PlayGame()
 }
 
-fun PlayGame(){
-    Create_Player()
-    Create_Ninja()
-    Batle()
+fun ScannerScan() {
+    try {
+        var indexOfUnit = 0
+        val scanner = Scanner("src//MyGame//OtherFiles//enemyList") //TODO არ კითხულობს ფაილს
+        // val scanner = Scanner("src/MyGame/enemyFile")
+
+        while (scanner.hasNext()) {
+            when {
+                scanner.next() == "NINJA" -> Create_Ninja("NINJA$indexOfUnit")
+            }
+            indexOfUnit ++
+//
+        }
+        //val enemyBase = EnemyBase(enemyArray)
+        // base.enter()
+    } catch (ex: FileNotFoundException) {
+        println("File not Found")
+    }
 }
 
-fun Create_Player(){
-    val player = Player("GFavaz", "NINJA")
+
+fun PlayGame() {
+    val player = Create_Player()
+    val ninja = Create_Ninja("ninja1")
+    Batle(player, ninja)
 }
 
-fun Create_Ninja(){
-    val ninja1 = Ninja();
+fun Create_Player(): Player {
+    var player = Player("GFavaz", "NINJA")
+    return player
 }
 
-fun Batle(){
+fun Create_Ninja(name: String): Enemy {
+    val ninja = Enemy(name);
+    //TODO აქედან უნდა ჩასვას ენემიარაიში შექმნილი ობიექტი
+    return ninja
+}
 
-
-
-
-    var atacer = Fight().Starter()
-    var hit = Fight().Hit(atacer)
+fun Batle(player: Player, enemy: Enemy) {
+    Fight().Batle(player, enemy)
 }

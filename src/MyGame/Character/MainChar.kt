@@ -20,7 +20,7 @@ abstract class MainChar() {
 
     companion object{
         private val HEALTH = 50.0
-        private val CANDAMAGE = 1.0
+        private val CANDAMAGE = 5.0
         private val GETDAMAGE = 1.0
         private val SHIELD = 3.0
     }

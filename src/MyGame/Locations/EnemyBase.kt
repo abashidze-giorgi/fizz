@@ -1,13 +1,18 @@
 package MyGame.Locations
 
-class  EnemyBase() {
+import MyGame.Units.Enemy
 
-    fun <T> Enemy_Base(array: Array<T>){
-        var enemysOnBase: MutableList<T>
-        for(el in array){
+open class  EnemyBase(array: Array<Enemy>) {
 
+    fun <T> Set_Enemys (enemyList: MutableList<String>, enemyBase: EnemyBase){
+        for (el in enemyList){
+            enemysOnBase.add(el)
         }
-
     }
 
+    companion object{
+        private var enemysOnBase = mutableListOf<String>()
+    }
 }
+
+

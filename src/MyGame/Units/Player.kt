@@ -8,7 +8,7 @@ class Player(name: String, enemy: String){
     var unit = PlayerChar(name, enemy)
     init {
 
-        println("Player: name: ${unit.unit}, health: ${unit.health}, " +
+        println("Player: name: ${unit.name}, health: ${unit.health}, " +
                 "demage: ${unit.canDemage}, shield: ${unit.shield}, weaknessEnemy: ${unit.weaknessEnemy}")
     }
 }
