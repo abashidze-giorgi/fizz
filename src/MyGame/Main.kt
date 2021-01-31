@@ -25,6 +25,10 @@ fun Create_Ninja(){
 }
 
 fun Batle(){
+
+
+
+
     var atacer = Fight().Starter()
     var hit = Fight().Hit(atacer)
 }

@@ -2,7 +2,14 @@ package MyGame.Actions
 import MyGame.Random.WhoStart
 import MyGame.Random.Hit_Or_No
 import MyGame.Random.Hit_Point
+import MyGame.Character.Enemy
+import MyGame.Units.Player
+
 class Fight {
+
+    fun fight(player: Player, enemy: Enemy){
+
+    }
 
     /**
      * აბრუნებს სახელს, ვინ დაიწყებს პირველი ბრძოლას
