@@ -59,7 +59,7 @@ fun PlayGame(enemyBase: MutableList<Enemy>) {
     }
     println("")
     println("Total Enemys: ${index-1}")
-    println("Press 'Enter'")
+    print("Press 'Enter'")
     System. `in`.read()
     for (el in enemyBase) {
         Batle(player, el, enemyBase)
