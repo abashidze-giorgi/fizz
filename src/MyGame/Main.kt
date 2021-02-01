@@ -53,7 +53,6 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
 fun PlayGame(enemyBase: MutableList<Enemy>) {
     val player = Create_Player()
     var index = 1
-    // TODO მტრის მოკვლისას ელემენტი ამოსაღებია enemyBase-ს სიიდან.
     for(el in enemyBase){
         print("$index - ${el.name}. ")
         index++
@@ -76,7 +75,6 @@ fun Create_Player(): Player {
 fun Create_Ninja(name: String, enemyBase: MutableList<Enemy>): Enemy {
     var ninja = NinjaChar(name, "NINJA");
     enemyBase.add(ninja)
-    //TODO აქედან უნდა ჩასვას ენემიარაიში შექმნილი ობიექტი
     return ninja
 }
 

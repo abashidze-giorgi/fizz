@@ -7,7 +7,7 @@ import MyGame.Units.Player
 /**
  * ღებულობს ორ ცვლადს და რანდომ აბრუნებს რომელიმეს.
  */
-fun WhoStart(player: String, enemy: String):String{ // TODO როგორ დავაბრუნო ობიექტი player ან enemy სტრინგის ნაცვლად
+fun WhoStart(player: String, enemy: String):String{
     var starter: String = "enemy"
     val i  = (0..1).random()
     if(i == 1){
