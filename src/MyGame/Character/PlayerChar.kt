@@ -21,4 +21,3 @@ class PlayerChar(name:String, weaknessEnemy: String):MainChar() {
         private val BASE_SHIELD = 4.0
     }
 }
-
