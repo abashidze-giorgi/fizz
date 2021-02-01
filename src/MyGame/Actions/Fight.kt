@@ -50,7 +50,7 @@ class Fight {
 
     fun HitPoin(maxDemage: Int):Int{
         val hitPont = Hit_Point(maxDemage)
-        println("HitPoint = $hitPont")
+        // println("HitPoint = $hitPont")
         return hitPont
     }
 
@@ -63,11 +63,26 @@ class Fight {
 
             if(atacker == "player"){
                 var hit = Fight().Player_Hit(player)
+                println("hitpoint $hit")
                 enemy.unit.health -= hit
+                if(enemy.unit.health <= 0){
+                    if(enemy.unit.unitType == player.unit.weaknessEnemy){
+                        player.unit.health += 50
+
+                    }
+                    if(player.unit.health > 100.0){
+                        player.unit.health = 100.0
+                    }
+                }
                 println("${player.unit.name} healt: ${player.unit.health}. ${enemy.unit.name} health: ${enemy.unit.health} \n")
             }else{
                 var hit = Fight().Enemy_Hit(enemy)
+                if(enemy.unit.unitType == player.unit.weaknessEnemy){
+                    hit += hit
+                }
+                println("hitpoint $hit")
                 player.unit.health -= hit
+
                 println("${player.unit.name} healt: ${player.unit.health}. ${enemy.unit.name} health: ${enemy.unit.health} \n")
             }
         }

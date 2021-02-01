@@ -1,6 +1,7 @@
 package MyGame
 
 import MyGame.Actions.Fight
+import MyGame.Character.MainChar
 import MyGame.Character.NinjaChar
 import MyGame.Locations.EnemyBase
 import MyGame.Units.Enemy
@@ -24,12 +25,9 @@ fun main() {
 fun Create_Enemy_Base(name: String): MutableList<Enemy>{
     val base = EnemyBase()
     var enemyBase = base.CreateBase(mutableListOf<Enemy>())
-    System.out.println(enemyBase.javaClass.kotlin.qualifiedName)
-    System.out.println(enemyBase.javaClass.name)                 // double
-    System.out.println(enemyBase.javaClass.kotlin)               // class kotlin.Double
-    if (enemyBase is MutableList<Enemy>) {
-        println("true")
-    }
+//    if (enemyBase is MutableList<Enemy>) {
+//        println("true")
+//    }
     return enemyBase
 }
 
@@ -49,10 +47,15 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
 
 fun PlayGame(enemyBase: MutableList<Enemy>) {
     val player = Create_Player()
-
+    println(enemyBase)
     for(el in enemyBase){
         Batle(player, el)
+//        if (el.unit.health <= 0){
+//            enemyBase.remove(el)
+//            println(enemyBase)
+//        }
     }
+
 }
 
 fun Create_Player(): Player {
