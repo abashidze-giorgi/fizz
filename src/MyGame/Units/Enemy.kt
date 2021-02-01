@@ -6,7 +6,7 @@ class Enemy (name: String){
 
     val name: String =  name
 
-    var unit = NinjaChar("NINJA")
+    var unit = NinjaChar(name)
 
     init {
         println("Enemy: Type: ${unit.unitType} name: ${unit.name}, health: ${unit.health}, " +

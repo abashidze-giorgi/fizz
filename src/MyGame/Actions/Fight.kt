@@ -71,6 +71,11 @@ class Fight {
                 println("${player.unit.name} healt: ${player.unit.health}. ${enemy.unit.name} health: ${enemy.unit.health} \n")
             }
         }
+        if(player.unit.health > 0){
+            println("Congrats!!!!   ${player.unit.name} WIN!")
+        }else{
+            println("You Lose. Try again.")
+        }
     }
 }
 

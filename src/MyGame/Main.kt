@@ -5,48 +5,54 @@ import MyGame.Character.NinjaChar
 import MyGame.Locations.EnemyBase
 import MyGame.Units.Enemy
 import MyGame.Units.Player
+import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
+import kotlin.reflect.typeOf
 
-class Enemy(){
+class Main(){
 
-    companion object{
-    var enemyArray = mutableListOf<Enemy>() //TODO უნდა მიიღოს ყველა შექმნილი მტრის ობიექტი
-
-    }
 }
 
 fun main() {
-    ScannerScan();
-
-    PlayGame()
+//    readFileLineByLineUsingForEachLine("src//MyGame//OtherFiles//enemyList")
+    var enemyBase = Create_Enemy_Base("Base1")
+    ScannerScan(enemyBase)
+    PlayGame(enemyBase)
 }
 
-fun ScannerScan() {
-    try {
-        var indexOfUnit = 0
-        val scanner = Scanner("src//MyGame//OtherFiles//enemyList") //TODO არ კითხულობს ფაილს
-        // val scanner = Scanner("src/MyGame/enemyFile")
+fun Create_Enemy_Base(name: String): MutableList<Enemy>{
+    val base = EnemyBase()
+    var enemyBase = base.CreateBase(mutableListOf<Enemy>())
+    System.out.println(enemyBase.javaClass.kotlin.qualifiedName)
+    System.out.println(enemyBase.javaClass.name)                 // double
+    System.out.println(enemyBase.javaClass.kotlin)               // class kotlin.Double
+    if (enemyBase is MutableList<Enemy>) {
+        println("true")
+    }
+    return enemyBase
+}
 
-        while (scanner.hasNext()) {
-            when {
-                scanner.next() == "NINJA" -> Create_Ninja("NINJA$indexOfUnit")
-            }
-            indexOfUnit ++
-//
-        }
-        //val enemyBase = EnemyBase(enemyArray)
-        // base.enter()
+fun readFileLineByLineUsingForEachLine(fileName: String)
+        = File(fileName).forEachLine { println(it) }
+
+fun ScannerScan(enemyBase: MutableList<Enemy>) {
+    try {
+        val fileName = "src//MyGame//OtherFiles//enemyList"
+        var indexOfUnit = 1
+        File(fileName).forEachLine { Create_Ninja("NINJA$indexOfUnit", enemyBase); indexOfUnit++ }
+
     } catch (ex: FileNotFoundException) {
         println("File not Found")
     }
 }
 
-
-fun PlayGame() {
+fun PlayGame(enemyBase: MutableList<Enemy>) {
     val player = Create_Player()
-    val ninja = Create_Ninja("ninja1")
-    Batle(player, ninja)
+
+    for(el in enemyBase){
+        Batle(player, el)
+    }
 }
 
 fun Create_Player(): Player {
@@ -54,8 +60,9 @@ fun Create_Player(): Player {
     return player
 }
 
-fun Create_Ninja(name: String): Enemy {
+fun Create_Ninja(name: String, enemyBase: MutableList<Enemy>): Enemy {
     val ninja = Enemy(name);
+    enemyBase.add(ninja)
     //TODO აქედან უნდა ჩასვას ენემიარაიში შექმნილი ობიექტი
     return ninja
 }
