@@ -1,12 +1,13 @@
 package MyGame.Character
 
+import MyGame.Units.Enemy
 
-open class NinjaChar(name:String) :MainChar(){
+open class NinjaChar(name:String, unit: String) : Enemy(name){
 
-    val unitType = "NINJA"
-    val name = name
-    var health = Health() + NINJA_HEALTH
-    var canDemage = CanDamage() + NINJA_CAN_DEMAGE
+    override val unitType = unit
+    override val name = name
+    override var health = Health() + NINJA_HEALTH
+    override var canDemage = CanDamage() + NINJA_CAN_DEMAGE
     var getDamage = GetDamage() + NINJA_GET_DEMAGE
     var shield = Shield() + NINJA_SHIELD
 

@@ -1,16 +1,12 @@
 package MyGame.Units
 
+import MyGame.Character.MainChar
 import MyGame.Character.NinjaChar
 
-class Enemy (name: String){
-
-    val name: String =  name
-
-    var unit = NinjaChar(name)
-
-    init {
-        println("Enemy: Type: ${unit.unitType} name: ${unit.name}, health: ${unit.health}, " +
-                    "demage: ${unit.canDemage}, shield: ${unit.shield}")
-        }
-
+open class Enemy (name: String, ):MainChar(){
+    open val unitType: String = ""
+    open var health: Double = 0.0
+    open val canDemage: Double = 0.0
+    val unit: String = ""
+    open val name: String = ""
 }

@@ -1,6 +1,6 @@
 package MyGame.Character
 
-abstract class MainChar() {
+open class MainChar() {
 
     open fun Health():Double{
         return HEALTH

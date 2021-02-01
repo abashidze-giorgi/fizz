@@ -14,7 +14,7 @@ class Fight {
      * აბრუნებს სახელს, ვინ დაიწყებს პირველი ბრძოლას
      */
     fun Starter(player: Player, enemy: Enemy): String{
-        val starter = WhoStart(player.unit.name, enemy.unit.name)
+        val starter = WhoStart(player.unit.name, enemy.name)
         return starter
     }
 
@@ -36,14 +36,14 @@ class Fight {
     /**
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა მტერმა
      */
-    fun Enemy_Hit(unit: Enemy):Int {
+    fun Enemy_Hit(enemy: Enemy):Int {
         val hit: Boolean = Hit_Or_No()
         var hitPoint: Int = 0
         if(hit){
-            println("${unit.unit.name} hit")
-            hitPoint = HitPoin(unit.unit.canDemage.toInt())
+            println("${enemy.name} hit")
+            hitPoint = HitPoin(enemy.canDemage.toInt())
         }else{
-            println("${unit.unit.name} miss")
+            println("${enemy.name} miss")
         }
         return hitPoint
     }
@@ -56,7 +56,7 @@ class Fight {
 
     fun Batle(player: Player, enemy: Enemy){
         var batleRound = 0
-        while(player.unit.health > 0 && enemy.unit.health > 0){
+        while(player.unit.health > 0 && enemy.health > 0){
             batleRound ++
             println("Round: $batleRound")
             var atacker = Fight().Starter(player, enemy)
@@ -64,26 +64,30 @@ class Fight {
             if(atacker == "player"){
                 var hit = Fight().Player_Hit(player)
                 println("hitpoint $hit")
-                enemy.unit.health -= hit
-                if(enemy.unit.health <= 0){
-                    if(enemy.unit.unitType == player.unit.weaknessEnemy){
+                enemy.health -= hit
+                if(enemy.health <= 0){
+                    if(enemy.unitType == player.unit.weaknessEnemy){
                         player.unit.health += 50
 
+                    }else{
+                        player.unit.health += 35
                     }
+                    /**
                     if(player.unit.health > 100.0){
                         player.unit.health = 100.0
                     }
+                    **/
                 }
-                println("${player.unit.name} healt: ${player.unit.health}. ${enemy.unit.name} health: ${enemy.unit.health} \n")
+                println("${player.unit.name} healt: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
             }else{
                 var hit = Fight().Enemy_Hit(enemy)
-                if(enemy.unit.unitType == player.unit.weaknessEnemy){
+                if(enemy.unitType == player.unit.weaknessEnemy){
                     hit += hit
                 }
                 println("hitpoint $hit")
                 player.unit.health -= hit
 
-                println("${player.unit.name} healt: ${player.unit.health}. ${enemy.unit.name} health: ${enemy.unit.health} \n")
+                println("${player.unit.name} healt: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
             }
         }
         if(player.unit.health > 0){

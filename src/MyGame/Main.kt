@@ -2,6 +2,7 @@ package MyGame
 
 import MyGame.Actions.Fight
 import MyGame.Character.MainChar
+import MyGame.Character.NanoRobotChar
 import MyGame.Character.NinjaChar
 import MyGame.Locations.EnemyBase
 import MyGame.Units.Enemy
@@ -11,7 +12,7 @@ import java.io.FileNotFoundException
 import java.util.*
 import kotlin.reflect.typeOf
 
-class Main(){
+class Main() {
 
 }
 
@@ -22,23 +23,27 @@ fun main() {
     PlayGame(enemyBase)
 }
 
-fun Create_Enemy_Base(name: String): MutableList<Enemy>{
+fun Create_Enemy_Base(name: String): MutableList<Enemy> {
     val base = EnemyBase()
     var enemyBase = base.CreateBase(mutableListOf<Enemy>())
-//    if (enemyBase is MutableList<Enemy>) {
-//        println("true")
-//    }
     return enemyBase
 }
 
-fun readFileLineByLineUsingForEachLine(fileName: String)
-        = File(fileName).forEachLine { println(it) }
+// fun readFileLineByLineUsingForEachLine(fileName: String) = File(fileName).forEachLine { println(it) }
 
 fun ScannerScan(enemyBase: MutableList<Enemy>) {
     try {
         val fileName = "src//MyGame//OtherFiles//enemyList"
-        var indexOfUnit = 1
-        File(fileName).forEachLine { Create_Ninja("NINJA$indexOfUnit", enemyBase); indexOfUnit++ }
+        var indexOfNinjaUnit = 1
+        var indexOfNanoUnit = 1
+        File(fileName).forEachLine {
+            when{
+                it == "NINJA" -> {Create_Ninja("NINJA$indexOfNinjaUnit", enemyBase); indexOfNinjaUnit++};
+
+                it == "NANO_ROBOT" -> {Create_Nano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++}
+            }
+
+        }
 
     } catch (ex: FileNotFoundException) {
         println("File not Found")
@@ -47,8 +52,16 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
 
 fun PlayGame(enemyBase: MutableList<Enemy>) {
     val player = Create_Player()
-    println(enemyBase)
+    var index = 1
     for(el in enemyBase){
+        print("$index - ${el.name}. ")
+        index++
+    }
+    println("")
+    println("Total Enemys: $index")
+    println("Press 'Enter'")
+    System. `in`.read()
+    for (el in enemyBase) {
         Batle(player, el)
 //        if (el.unit.health <= 0){
 //            enemyBase.remove(el)
@@ -64,10 +77,17 @@ fun Create_Player(): Player {
 }
 
 fun Create_Ninja(name: String, enemyBase: MutableList<Enemy>): Enemy {
-    val ninja = Enemy(name);
+    var ninja = NinjaChar(name, "NINJA");
     enemyBase.add(ninja)
     //TODO აქედან უნდა ჩასვას ენემიარაიში შექმნილი ობიექტი
     return ninja
+}
+
+fun Create_Nano(name: String, enemyBase: MutableList<Enemy>): Enemy {
+    val NanoRobot = NanoRobotChar(name, "NANO_ROBOT");
+    enemyBase.add(NanoRobot)
+    //TODO აქედან უნდა ჩასვას ენემიარაიში შექმნილი ობიექტი
+    return NanoRobot
 }
 
 fun Batle(player: Player, enemy: Enemy) {
