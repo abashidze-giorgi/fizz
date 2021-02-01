@@ -1,4 +1,5 @@
 package MyGame.Actions
+import MyGame.Locations.EnemyBase
 import MyGame.Random.WhoStart
 import MyGame.Random.Hit_Or_No
 import MyGame.Random.Hit_Point
@@ -54,7 +55,7 @@ class Fight {
         return hitPont
     }
 
-    fun Batle(player: Player, enemy: Enemy){
+    fun Batle(player: Player, enemy: Enemy, enemyBase: MutableList<Enemy>){
         var batleRound = 0
         while(player.unit.health > 0 && enemy.health > 0){
             batleRound ++
@@ -66,6 +67,10 @@ class Fight {
                 println("hitpoint $hit")
                 enemy.health -= hit
                 if(enemy.health <= 0){
+                    /**  //TODO როდესაც enemy-ს ვშლი ბაზიდან, აღარ აგრძელებს ბრძოლას.
+                    enemyBase.remove(enemy)
+                    println("Enemys on base: ${enemyBase.size}")
+                    **/
                     if(enemy.unitType == player.unit.weaknessEnemy){
                         player.unit.health += 50
 
@@ -78,7 +83,7 @@ class Fight {
                     }
                     **/
                 }
-                println("${player.unit.name} healt: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
+                println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
             }else{
                 var hit = Fight().Enemy_Hit(enemy)
                 if(enemy.unitType == player.unit.weaknessEnemy){
@@ -87,7 +92,7 @@ class Fight {
                 println("hitpoint $hit")
                 player.unit.health -= hit
 
-                println("${player.unit.name} healt: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
+                println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
             }
         }
         if(player.unit.health > 0){

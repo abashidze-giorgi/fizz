@@ -53,22 +53,19 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
 fun PlayGame(enemyBase: MutableList<Enemy>) {
     val player = Create_Player()
     var index = 1
+    // TODO მტრის მოკვლისას ელემენტი ამოსაღებია enemyBase-ს სიიდან.
     for(el in enemyBase){
         print("$index - ${el.name}. ")
         index++
     }
     println("")
-    println("Total Enemys: $index")
+    println("Total Enemys: ${index-1}")
     println("Press 'Enter'")
     System. `in`.read()
     for (el in enemyBase) {
-        Batle(player, el)
-//        if (el.unit.health <= 0){
-//            enemyBase.remove(el)
-//            println(enemyBase)
-//        }
-    }
+        Batle(player, el, enemyBase)
 
+    }
 }
 
 fun Create_Player(): Player {
@@ -90,6 +87,6 @@ fun Create_Nano(name: String, enemyBase: MutableList<Enemy>): Enemy {
     return NanoRobot
 }
 
-fun Batle(player: Player, enemy: Enemy) {
-    Fight().Batle(player, enemy)
+fun Batle(player: Player, enemy: Enemy, enemyBase: MutableList<Enemy>) {
+    Fight().Batle(player, enemy, enemyBase)
 }
