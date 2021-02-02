@@ -1,4 +1,4 @@
-package MyGame.Character
+package myGame.character
 
 class PlayerChar(val name: String, val weaknessEnemy: String) : MainChar() {
     //    val unit = "PLAYER"

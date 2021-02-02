@@ -1,6 +1,6 @@
-package MyGame.Units
+package myGame.units
 
-import MyGame.Character.PlayerChar
+import myGame.character.PlayerChar
 
 class Player(name: String, enemy: String) {
     val name = name

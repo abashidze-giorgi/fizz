@@ -1,6 +1,6 @@
-package MyGame.Character
+package myGame.character
 
-import MyGame.Units.Enemy
+import myGame.units.Enemy
 
 class NinjaChar(override val name: String, unit: String) : Enemy(name) {
 

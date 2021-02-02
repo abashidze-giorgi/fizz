@@ -1,4 +1,4 @@
-package MyGame.Character
+package myGame.character
 
 open class MainChar() {
 

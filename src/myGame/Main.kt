@@ -1,11 +1,11 @@
-package MyGame
+package myGame
 
-import MyGame.Actions.Fight
-import MyGame.Character.NanoRobotChar
-import MyGame.Character.NinjaChar
-import MyGame.Locations.EnemyBase
-import MyGame.Units.Enemy
-import MyGame.Units.Player
+import myGame.actions.Fight
+import myGame.character.NanoRobotChar
+import myGame.character.NinjaChar
+import myGame.locations.EnemyBase
+import myGame.units.Enemy
+import myGame.units.Player
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -37,7 +37,7 @@ fun scannerScan(enemyBase: MutableList<Enemy>) {
                 };
 
                 it == "NANO_ROBOT" -> {
-                    create_Nano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++
+                    createNano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++
                 }
             }
 
@@ -59,7 +59,7 @@ fun playGame(enemyBase: MutableList<Enemy>) {
     println("Total Enemys: ${index - 1}")
     print("Press 'Enter'")
     System.`in`.read()
-    batle(player, enemyBase)
+    battle(player, enemyBase)
 }
 
 fun createPlayer(): Player {
@@ -73,12 +73,12 @@ fun createNinja(name: String, enemyBase: MutableList<Enemy>): Enemy {
     return ninja
 }
 
-fun create_Nano(name: String, enemyBase: MutableList<Enemy>): Enemy {
+fun createNano(name: String, enemyBase: MutableList<Enemy>): Enemy {
     val NanoRobot = NanoRobotChar(name, "NANO_ROBOT");
     enemyBase.add(NanoRobot)
     return NanoRobot
 }
 
-fun batle(player: Player, enemyBase: MutableList<Enemy>) {
+fun battle(player: Player, enemyBase: MutableList<Enemy>) {
     Fight().Batle(player, enemyBase)
 }

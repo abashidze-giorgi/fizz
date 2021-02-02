@@ -1,6 +1,4 @@
-package MyGame.Locations
-
-import MyGame.Units.Enemy
+package myGame.locations
 
 class EnemyBase() {
 

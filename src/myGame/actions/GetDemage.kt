@@ -1,7 +1,7 @@
-package MyGame.Actions
+package myGame.actions
 
-import MyGame.Units.Enemy
-import MyGame.Units.Player
+import myGame.units.Enemy
+import myGame.units.Player
 
 open class GetDemage(val player: Player, val enemy: Enemy) {
     //    val enemy = enemy

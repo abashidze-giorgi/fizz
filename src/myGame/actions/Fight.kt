@@ -1,10 +1,10 @@
-package MyGame.Actions
+package myGame.actions
 
-import MyGame.Random.whoStart
-import MyGame.Random.hitOrNo
-import MyGame.Random.hitPoint
-import MyGame.Units.Enemy
-import MyGame.Units.Player
+import myGame.random.hitOrNo
+import myGame.random.hitPoint
+import myGame.random.whoStart
+import myGame.units.Enemy
+import myGame.units.Player
 
 class Fight {
 
