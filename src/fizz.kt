@@ -1,3 +1,5 @@
+
+
 fun main() {
 
     val array = IntArray(50) { it }

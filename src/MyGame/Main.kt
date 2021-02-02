@@ -1,7 +1,6 @@
 package MyGame
 
 import MyGame.Actions.Fight
-import MyGame.Character.MainChar
 import MyGame.Character.NanoRobotChar
 import MyGame.Character.NinjaChar
 import MyGame.Locations.EnemyBase

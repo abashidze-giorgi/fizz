@@ -57,49 +57,52 @@ class Fight {
 
     fun Batle(player: Player, enemy: Enemy, enemyBase: MutableList<Enemy>){
         var batleRound = 0
-        while(player.unit.health > 0 && enemy.health > 0){
-            batleRound ++
-            println("Round: $batleRound")
-            var atacker = Fight().Starter(player, enemy)
+        if(player.unit.health > 0 && enemy.health > 0){
+            while(player.unit.health > 0 && enemy.health > 0){
+                batleRound ++
+                println("Round: $batleRound")
+                var atacker = Fight().Starter(player, enemy)
 
-            if(atacker == "player"){
-                var hit = Fight().Player_Hit(player)
-                println("hitpoint $hit")
-                enemy.health -= hit
-                if(enemy.health <= 0){
-                    /**  //TODO როდესაც enemy-ს ვშლი ბაზიდან, აღარ აგრძელებს ბრძოლას.
-                    enemyBase.remove(enemy)
-                    println("Enemys on base: ${enemyBase.size}")
-                    **/
-                    if(enemy.unitType == player.unit.weaknessEnemy){
-                        player.unit.health += 50
+                if(atacker == "player"){
+                    var hit = Fight().Player_Hit(player)
+                    println("hitpoint $hit")
+                    enemy.health -= hit
+                    if(enemy.health <= 0){
+                        /**  //TODO როდესაც enemy-ს ვშლი ბაზიდან, აღარ აგრძელებს ბრძოლას.
+                        enemyBase.remove(enemy)
+                        println("Enemys on base: ${enemyBase.size}")
+                         **/
+                        if(enemy.unitType == player.unit.weaknessEnemy){
+                            player.unit.health += 50
 
-                    }else{
-                        player.unit.health += 35
-                    }
-                    /**
-                    if(player.unit.health > 100.0){
+                        }else{
+                            player.unit.health += 35
+                        }
+                        /**
+                        if(player.unit.health > 100.0){
                         player.unit.health = 100.0
+                        }
+                         **/
                     }
-                    **/
-                }
-                println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
-            }else{
-                var hit = Fight().Enemy_Hit(enemy)
-                if(enemy.unitType == player.unit.weaknessEnemy){
-                    hit += hit
-                }
-                println("hitpoint $hit")
-                player.unit.health -= hit
+                    println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
+                }else{
+                    var hit = Fight().Enemy_Hit(enemy)
+                    if(enemy.unitType == player.unit.weaknessEnemy){
+                        hit += hit
+                    }
+                    println("hitpoint $hit")
+                    player.unit.health -= hit
 
-                println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
+                    println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
+                }
+            }
+            if(player.unit.health > 0){
+                println("Congrats!!!!   ${player.unit.name} WIN!")
+            }else{
+                println("You Lose. Try again.")
             }
         }
-        if(player.unit.health > 0){
-            println("Congrats!!!!   ${player.unit.name} WIN!")
-        }else{
-            println("You Lose. Try again.")
-        }
+
     }
 }
 
