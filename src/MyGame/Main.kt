@@ -23,7 +23,7 @@ fun main() {
 }
 
 fun Create_Enemy_Base(name: String): MutableList<Enemy> {
-    val base = EnemyBase()
+    var base = EnemyBase()
     var enemyBase = base.CreateBase(mutableListOf<Enemy>())
     return enemyBase
 }
@@ -36,10 +36,14 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
         var indexOfNinjaUnit = 1
         var indexOfNanoUnit = 1
         File(fileName).forEachLine {
-            when{
-                it == "NINJA" -> {Create_Ninja("NINJA$indexOfNinjaUnit", enemyBase); indexOfNinjaUnit++};
+            when {
+                it == "NINJA" -> {
+                    Create_Ninja("NINJA$indexOfNinjaUnit", enemyBase); indexOfNinjaUnit++
+                };
 
-                it == "NANO_ROBOT" -> {Create_Nano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++}
+                it == "NANO_ROBOT" -> {
+                    Create_Nano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++
+                }
             }
 
         }
@@ -52,18 +56,15 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
 fun PlayGame(enemyBase: MutableList<Enemy>) {
     val player = Create_Player()
     var index = 1
-    for(el in enemyBase){
+    for (el in enemyBase) {
         print("$index - ${el.name}. ")
         index++
     }
     println("")
-    println("Total Enemys: ${index-1}")
+    println("Total Enemys: ${index - 1}")
     print("Press 'Enter'")
-    System. `in`.read()
-    for (el in enemyBase) {
-        Batle(player, el, enemyBase)
-
-    }
+    System.`in`.read()
+    Batle(player, enemyBase)
 }
 
 fun Create_Player(): Player {
@@ -78,12 +79,11 @@ fun Create_Ninja(name: String, enemyBase: MutableList<Enemy>): Enemy {
 }
 
 fun Create_Nano(name: String, enemyBase: MutableList<Enemy>): Enemy {
-    val NanoRobot = NanoRobotChar(name, "NANO_ROBOT");
+    var NanoRobot = NanoRobotChar(name, "NANO_ROBOT");
     enemyBase.add(NanoRobot)
-    //TODO აქედან უნდა ჩასვას ენემიარაიში შექმნილი ობიექტი
     return NanoRobot
 }
 
-fun Batle(player: Player, enemy: Enemy, enemyBase: MutableList<Enemy>) {
-    Fight().Batle(player, enemy, enemyBase)
+fun Batle(player: Player, enemyBase: MutableList<Enemy>) {
+    Fight().Batle(player, enemyBase)
 }

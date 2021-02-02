@@ -2,26 +2,36 @@ package MyGame.Character
 
 open class MainChar() {
 
-    open fun Health():Double{
+    fun Health(): Double {
         return HEALTH
     }
 
-    open fun CanDamage():Double{
+    fun Can_Damage(): Double {
         return CANDAMAGE
     }
 
-    open fun GetDamage():Double{
+    fun Get_Damage(): Double {
         return GETDAMAGE
     }
 
-    open fun Shield():Double{
+    open fun Shield(): Double {
         return SHIELD
     }
 
-    companion object{
+    open fun Has_Add_Attack(): Boolean {
+        return HAS_ADDITIONAL_ATTACK
+    }
+
+    fun Add_Demage(): Double {
+        return ADD_DEMAGE
+    }
+
+    companion object {
         private val HEALTH = 50.0
         private val CANDAMAGE = 5.0
         private val GETDAMAGE = 1.0
         private val SHIELD = 3.0
+        private val HAS_ADDITIONAL_ATTACK = false
+        private val ADD_DEMAGE = 0.0
     }
 }

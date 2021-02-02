@@ -1,20 +1,21 @@
 package MyGame.Actions
-import MyGame.Locations.EnemyBase
+
 import MyGame.Random.WhoStart
 import MyGame.Random.Hit_Or_No
 import MyGame.Random.Hit_Point
 import MyGame.Units.Enemy
 import MyGame.Units.Player
+import kotlin.system.exitProcess
 
 class Fight {
 
-    fun fight(player: Player, enemy: String){
+    fun fight(player: Player, enemy: String) {
     }
 
     /**
      * აბრუნებს სახელს, ვინ დაიწყებს პირველი ბრძოლას
      */
-    fun Starter(player: Player, enemy: Enemy): String{
+    fun Starter(player: Player, enemy: Enemy): String {
         val starter = WhoStart(player.unit.name, enemy.name)
         return starter
     }
@@ -22,13 +23,13 @@ class Fight {
     /**
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა პლეიერმა
      */
-    fun Player_Hit(unit: Player):Int {
+    fun Player_Hit(unit: Player): Double {
         val hit: Boolean = Hit_Or_No()
-        var hitPoint: Int = 0
-        if(hit){
+        var hitPoint: Double = 0.0
+        if (hit) {
             println("${unit.unit.name} hit")
-            hitPoint = HitPoin(unit.unit.canDemage.toInt())
-        }else{
+            hitPoint = HitPoin(unit.unit.canDemage)
+        } else {
             println("${unit.unit.name} miss")
         }
         return hitPoint
@@ -37,74 +38,90 @@ class Fight {
     /**
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა მტერმა
      */
-    fun Enemy_Hit(enemy: Enemy):Int {
+    fun Enemy_Hit(enemy: Enemy): Double {
         val hit: Boolean = Hit_Or_No()
-        var hitPoint: Int = 0
-        if(hit){
+        var hitPoint: Double = 0.0
+        if (hit) {
             println("${enemy.name} hit")
-            hitPoint = HitPoin(enemy.canDemage.toInt())
-        }else{
+            hitPoint = HitPoin(enemy.canDemage)
+        } else {
             println("${enemy.name} miss")
         }
         return hitPoint
     }
 
-    fun HitPoin(maxDemage: Int):Int{
+    fun HitPoin(maxDemage: Double): Double {
         val hitPont = Hit_Point(maxDemage)
         // println("HitPoint = $hitPont")
         return hitPont
     }
 
-    fun Batle(player: Player, enemy: Enemy, enemyBase: MutableList<Enemy>){
+    fun Batle(player: Player, enemyBase: MutableList<Enemy>) {
         var batleRound = 0
-        if(player.unit.health > 0 && enemy.health > 0){
-            while(player.unit.health > 0 && enemy.health > 0){
-                batleRound ++
-                println("Round: $batleRound")
-                var atacker = Fight().Starter(player, enemy)
+        /**
+         * თუ ბაზაზე დარჩენილია მტერი
+         * რანდომ ირჩევს მტერს და იწყებს ბრძოლას
+         * თუ გვინდა, რომ მიმდევრობით ებრძოლოს, გავხსნათ // val en = enemyBase[0]
+         * ხოლო val en = enemyBase[(0..enemyBase.size).random()] დავაკომენტოთ.
+         */
+        while (enemyBase.size > 0) {
+            //val en = enemyBase[(0..enemyBase.size).random()]
+            val en = enemyBase[0]
+            val enemyIndex = enemyBase.indexOf(en)
+            if (player.unit.health > 0 && en.health > 0) {
+                while (player.unit.health > 0 && en.health > 0) {
+                    batleRound++
+                    println("Round: $batleRound")
+                    var atacker = Fight().Starter(player, en)
 
-                if(atacker == "player"){
-                    var hit = Fight().Player_Hit(player)
-                    println("hitpoint $hit")
-                    enemy.health -= hit
-                    if(enemy.health <= 0){
-                        /**  //TODO როდესაც enemy-ს ვშლი ბაზიდან, აღარ აგრძელებს ბრძოლას.
-                        enemyBase.remove(enemy)
-                        println("Enemys on base: ${enemyBase.size}")
-                         **/
-                        if(enemy.unitType == player.unit.weaknessEnemy){
-                            player.unit.health += 50
+                    if (atacker == "player") {
+                        var hit = Fight().Player_Hit(player)
+                        println("hitpoint $hit")
+                        en.health -= hit
+                        if (en.health <= 0) {
+                            enemyBase.removeAt(enemyIndex)
+                            println("Enemys on base: ${enemyBase.size}")
 
-                        }else{
-                            player.unit.health += 35
+                            if (en.unitType == player.unit.weaknessEnemy) {
+                                player.unit.health += 50
+
+                            } else {
+                                player.unit.health += 35
+                            }
+                            /**
+                            if(player.unit.health > 100.0){
+                            player.unit.health = 100.0
+                            }
+                             **/
                         }
-                        /**
-                        if(player.unit.health > 100.0){
-                        player.unit.health = 100.0
+                        println("${player.unit.name} health: ${player.unit.health}. ${en.name} health: ${en.health} \n")
+                    } else {
+                        var hit = Fight().Enemy_Hit(en)
+                        if (en.unitType == player.unit.weaknessEnemy) {
+                            hit += hit
                         }
-                         **/
-                    }
-                    println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
-                }else{
-                    var hit = Fight().Enemy_Hit(enemy)
-                    if(enemy.unitType == player.unit.weaknessEnemy){
-                        hit += hit
-                    }
-                    println("hitpoint $hit")
-                    player.unit.health -= hit
+                        if (en.Has_Add_Attack()) {
+                            hit += en.add_demage
+                        }
+                        println("hitpoint $hit")
+                        player.unit.health -= hit
 
-                    println("${player.unit.name} health: ${player.unit.health}. ${enemy.name} health: ${enemy.health} \n")
+                        println("${player.unit.name} health: ${player.unit.health}. ${en.name} health: ${en.health} \n")
+                    }
+                }
+                if (player.unit.health > 0) {
+                    println("Congrats!!!!   ${player.unit.name} WIN!")
+                } else {
+                    println("You Lose. Try again.")
+                    break
                 }
             }
-            if(player.unit.health > 0){
-                println("Congrats!!!!   ${player.unit.name} WIN!")
-            }else{
-                println("You Lose. Try again.")
-            }
         }
+        println("Battle Is Over...")
+
     }
 }
 
-class PlayerWinException(){
+class PlayerWinException() {
 
 }

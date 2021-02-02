@@ -2,10 +2,11 @@ package MyGame.Units
 
 import MyGame.Character.PlayerChar
 
-class Player(name: String, enemy: String){
+class Player(name: String, enemy: String) {
     val name = name
     val weaknessEnemy: String = enemy
     var unit = PlayerChar(name, enemy)
+
     init {
 
         println("Player: name: ${unit.name}, health: ${unit.health}, " +
