@@ -102,7 +102,6 @@ class Fight {
                 println("You Lose. Try again.")
             }
         }
-
     }
 }
 
