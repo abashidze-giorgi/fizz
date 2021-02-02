@@ -1,4 +1,4 @@
-package myGame.locations
+package MyGame.locations
 
 class EnemyBase() {
 

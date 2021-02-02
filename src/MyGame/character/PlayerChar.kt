@@ -1,4 +1,4 @@
-package myGame.character
+package MyGame.character
 
 class PlayerChar(val name: String, val weaknessEnemy: String) : MainChar() {
     //    val unit = "PLAYER"
@@ -12,9 +12,9 @@ class PlayerChar(val name: String, val weaknessEnemy: String) : MainChar() {
     }
 
     companion object {
-        private val BASE_HEALTH = 80.0
-        private val BASE_CAN_DAMAGE = 19.0
-        private val BASE_GET_DAMAGE = -0.1
-        private val BASE_SHIELD = 4.0
+        private const val BASE_HEALTH = 80.0
+        private const val BASE_CAN_DAMAGE = 19.0
+        private const val BASE_GET_DAMAGE = -0.1
+        private const val BASE_SHIELD = 4.0
     }
 }

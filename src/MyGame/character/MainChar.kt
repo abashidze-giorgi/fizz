@@ -1,4 +1,4 @@
-package myGame.character
+package MyGame.character
 
 open class MainChar() {
 
@@ -27,11 +27,11 @@ open class MainChar() {
     }
 
     companion object {
-        private val HEALTH = 50.0
-        private val CANDAMAGE = 5.0
-        private val GETDAMAGE = 1.0
-        private val SHIELD = 3.0
-        private val HAS_ADDITIONAL_ATTACK = false
-        private val ADD_DAMAGE = 0.0
+        private const val HEALTH = 50.0
+        private const val CANDAMAGE = 5.0
+        private const val GETDAMAGE = 1.0
+        private const val SHIELD = 3.0
+        private const val HAS_ADDITIONAL_ATTACK = false
+        private const val ADD_DAMAGE = 0.0
     }
 }

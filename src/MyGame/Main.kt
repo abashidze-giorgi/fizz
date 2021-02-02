@@ -1,11 +1,11 @@
-package myGame
+package MyGame
 
-import myGame.actions.Fight
-import myGame.character.NanoRobotChar
-import myGame.character.NinjaChar
-import myGame.locations.EnemyBase
-import myGame.units.Enemy
-import myGame.units.Player
+import MyGame.actions.Fight
+import MyGame.character.NanoRobotChar
+import MyGame.character.NinjaChar
+import MyGame.locations.EnemyBase
+import MyGame.units.Enemy
+import MyGame.units.Player
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -80,5 +80,5 @@ fun createNano(name: String, enemyBase: MutableList<Enemy>): Enemy {
 }
 
 fun battle(player: Player, enemyBase: MutableList<Enemy>) {
-    Fight().Batle(player, enemyBase)
+    Fight().batle(player, enemyBase)
 }

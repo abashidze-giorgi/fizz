@@ -1,6 +1,6 @@
-package myGame.units
+package MyGame.units
 
-import myGame.character.MainChar
+import MyGame.character.MainChar
 
 open class Enemy(name: String) : MainChar() {
     open val unitType = ""

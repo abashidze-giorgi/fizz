@@ -1,4 +1,4 @@
-package myGame.random
+package MyGame.random
 
 /**
  * ღებულობს ორ ცვლადს და რანდომ აბრუნებს რომელიმეს.

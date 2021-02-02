@@ -1,6 +1,6 @@
-package myGame.character
+package MyGame.character
 
-import myGame.units.Enemy
+import MyGame.units.Enemy
 
 class NinjaChar(override val name: String, unit: String) : Enemy(name) {
 
@@ -13,10 +13,10 @@ class NinjaChar(override val name: String, unit: String) : Enemy(name) {
     override val addDamage = additionalDamage() + NINJA_ADD_ATACK
 
     companion object {
-        private val NINJA_HEALTH = 10.0
-        private val NINJA_CAN_DEMAGE = 2.0
-        private val NINJA_GET_DEMAGE = 0.0
-        private val NINJA_SHIELD = 4.0
-        private val NINJA_ADD_ATACK = 0.0
+        private const val NINJA_HEALTH = 10.0
+        private const val NINJA_CAN_DEMAGE = 2.0
+        private const val NINJA_GET_DEMAGE = 0.0
+        private const val NINJA_SHIELD = 4.0
+        private const val NINJA_ADD_ATACK = 0.0
     }
 }

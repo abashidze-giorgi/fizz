@@ -1,10 +1,9 @@
-package myGame.actions
+package MyGame.actions
 
-import myGame.random.hitOrNo
-import myGame.random.hitPoint
-import myGame.random.whoStart
-import myGame.units.Enemy
-import myGame.units.Player
+import MyGame.random.hitOrNo
+import MyGame.random.whoStart
+import MyGame.units.Enemy
+import MyGame.units.Player
 
 class Fight {
 
@@ -14,7 +13,7 @@ class Fight {
     /**
      * აბრუნებს სახელს, ვინ დაიწყებს პირველი ბრძოლას
      */
-    fun Starter(player: Player, enemy: Enemy): String {
+    fun starter(player: Player, enemy: Enemy): String {
         val starter = whoStart(player.unit.name, enemy.name)
         return starter
     }
@@ -22,12 +21,12 @@ class Fight {
     /**
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა პლეიერმა
      */
-    fun Player_Hit(unit: Player): Double {
+    fun playerHit(unit: Player): Double {
         val hit: Boolean = hitOrNo()
         var hitPoint: Double = 0.0
         if (hit) {
             println("${unit.unit.name} hit")
-            hitPoint = HitPoin(unit.unit.canDemage)
+            hitPoint = hitPoint(unit.unit.canDemage)
         } else {
             println("${unit.unit.name} miss")
         }
@@ -37,25 +36,25 @@ class Fight {
     /**
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა მტერმა
      */
-    fun Enemy_Hit(enemy: Enemy): Double {
+    fun enemyHit(enemy: Enemy): Double {
         val hit: Boolean = hitOrNo()
         var hitPoint: Double = 0.0
         if (hit) {
             println("${enemy.name} hit")
-            hitPoint = HitPoin(enemy.canDamage)
+            hitPoint = hitPoint(enemy.canDamage)
         } else {
             println("${enemy.name} miss")
         }
         return hitPoint
     }
 
-    fun HitPoin(maxDemage: Double): Double {
-        val hitPont = hitPoint(maxDemage)
+    fun hitPoint(maxDemage: Double): Double {
+        val hitPont = MyGame.random.hitPoint(maxDemage)
         // println("HitPoint = $hitPont")
         return hitPont
     }
 
-    fun Batle(player: Player, enemyBase: MutableList<Enemy>) {
+    fun batle(player: Player, enemyBase: MutableList<Enemy>) {
         var batleRound = 0
         /**
          * თუ ბაზაზე დარჩენილია მტერი
@@ -71,10 +70,10 @@ class Fight {
                 while (player.unit.health > 0 && en.health > 0) {
                     batleRound++
                     println("Round: $batleRound")
-                    var atacker = Fight().Starter(player, en)
+                    var atacker = Fight().starter(player, en)
 
                     if (atacker == "player") {
-                        var hit = Fight().Player_Hit(player)
+                        var hit = Fight().playerHit(player)
                         println("hitpoint $hit")
                         en.health -= hit
                         if (en.health <= 0) {
@@ -95,7 +94,7 @@ class Fight {
                         }
                         println("${player.unit.name} health: ${player.unit.health}. ${en.name} health: ${en.health} \n")
                     } else {
-                        var hit = Fight().Enemy_Hit(en)
+                        var hit = Fight().enemyHit(en)
                         if (en.unitType == player.unit.weaknessEnemy) {
                             hit += hit
                         }
@@ -119,8 +118,4 @@ class Fight {
         println("Battle Is Over...")
 
     }
-}
-
-class PlayerWinException() {
-
 }

@@ -1,6 +1,6 @@
-package myGame.character
+package MyGame.character
 
-import myGame.units.Enemy
+import MyGame.units.Enemy
 
 class NanoRobotChar(override val name: String, unit: String) : Enemy(name) {
 
@@ -16,10 +16,10 @@ class NanoRobotChar(override val name: String, unit: String) : Enemy(name) {
     override val addDamage = additionalDamage() + NANO_ROBOT_ADD_ATACK
 
     companion object {
-        private val NANO_ROBOT_HEALTH = 35.0
-        private val NANO_ROBOT_CAN_DEMAGE = 6.0
-        private val NANO_ROBOT_GET_DEMAGE = 6.0
-        private val NANO_ROBOT_SHIELD = 10.0
-        private val NANO_ROBOT_ADD_ATACK = 3.0
+        private const val NANO_ROBOT_HEALTH = 35.0
+        private const val NANO_ROBOT_CAN_DEMAGE = 6.0
+        private const val NANO_ROBOT_GET_DEMAGE = 6.0
+        private const val NANO_ROBOT_SHIELD = 10.0
+        private const val NANO_ROBOT_ADD_ATACK = 3.0
     }
 }
