@@ -1,11 +1,10 @@
 package MyGame.Actions
 
-import MyGame.Random.WhoStart
-import MyGame.Random.Hit_Or_No
-import MyGame.Random.Hit_Point
+import MyGame.Random.whoStart
+import MyGame.Random.hitOrNo
+import MyGame.Random.hitPoint
 import MyGame.Units.Enemy
 import MyGame.Units.Player
-import kotlin.system.exitProcess
 
 class Fight {
 
@@ -16,7 +15,7 @@ class Fight {
      * აბრუნებს სახელს, ვინ დაიწყებს პირველი ბრძოლას
      */
     fun Starter(player: Player, enemy: Enemy): String {
-        val starter = WhoStart(player.unit.name, enemy.name)
+        val starter = whoStart(player.unit.name, enemy.name)
         return starter
     }
 
@@ -24,7 +23,7 @@ class Fight {
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა პლეიერმა
      */
     fun Player_Hit(unit: Player): Double {
-        val hit: Boolean = Hit_Or_No()
+        val hit: Boolean = hitOrNo()
         var hitPoint: Double = 0.0
         if (hit) {
             println("${unit.unit.name} hit")
@@ -39,11 +38,11 @@ class Fight {
      * აბრუნებს პასუხს,დაარტყა თუ ააცილა მტერმა
      */
     fun Enemy_Hit(enemy: Enemy): Double {
-        val hit: Boolean = Hit_Or_No()
+        val hit: Boolean = hitOrNo()
         var hitPoint: Double = 0.0
         if (hit) {
             println("${enemy.name} hit")
-            hitPoint = HitPoin(enemy.canDemage)
+            hitPoint = HitPoin(enemy.canDamage)
         } else {
             println("${enemy.name} miss")
         }
@@ -51,7 +50,7 @@ class Fight {
     }
 
     fun HitPoin(maxDemage: Double): Double {
-        val hitPont = Hit_Point(maxDemage)
+        val hitPont = hitPoint(maxDemage)
         // println("HitPoint = $hitPont")
         return hitPont
     }
@@ -100,8 +99,8 @@ class Fight {
                         if (en.unitType == player.unit.weaknessEnemy) {
                             hit += hit
                         }
-                        if (en.Has_Add_Attack()) {
-                            hit += en.add_demage
+                        if (en.hasAddAttack()) {
+                            hit += en.addDamage
                         }
                         println("hitpoint $hit")
                         player.unit.health -= hit

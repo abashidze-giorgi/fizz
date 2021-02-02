@@ -4,7 +4,7 @@ import MyGame.Units.Enemy
 
 class EnemyBase() {
 
-    open fun <T> CreateBase(mutableList: MutableList<T>): MutableList<T> {
+    open fun <T> createBase(mutableList: MutableList<T>): MutableList<T> {
         return mutableList
     }
 }

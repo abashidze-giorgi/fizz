@@ -6,11 +6,11 @@ open class MainChar() {
         return HEALTH
     }
 
-    fun Can_Damage(): Double {
+    fun canDamage(): Double {
         return CANDAMAGE
     }
 
-    fun Get_Damage(): Double {
+    fun getDamage(): Double {
         return GETDAMAGE
     }
 
@@ -18,12 +18,12 @@ open class MainChar() {
         return SHIELD
     }
 
-    open fun Has_Add_Attack(): Boolean {
+    open fun hasAddAttack(): Boolean {
         return HAS_ADDITIONAL_ATTACK
     }
 
-    fun Add_Demage(): Double {
-        return ADD_DEMAGE
+    fun additionalDamage(): Double {
+        return ADD_DAMAGE
     }
 
     companion object {
@@ -32,6 +32,6 @@ open class MainChar() {
         private val GETDAMAGE = 1.0
         private val SHIELD = 3.0
         private val HAS_ADDITIONAL_ATTACK = false
-        private val ADD_DEMAGE = 0.0
+        private val ADD_DAMAGE = 0.0
     }
 }

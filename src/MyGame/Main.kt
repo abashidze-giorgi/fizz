@@ -8,29 +8,24 @@ import MyGame.Units.Enemy
 import MyGame.Units.Player
 import java.io.File
 import java.io.FileNotFoundException
-import java.util.*
-import kotlin.reflect.typeOf
 
-class Main() {
-
-}
 
 fun main() {
 //    readFileLineByLineUsingForEachLine("src//MyGame//OtherFiles//enemyList")
-    var enemyBase = Create_Enemy_Base("Base1")
-    ScannerScan(enemyBase)
-    PlayGame(enemyBase)
+    val enemyBase = createEnemyBase("Base1")
+    scannerScan(enemyBase)
+    playGame(enemyBase)
 }
 
-fun Create_Enemy_Base(name: String): MutableList<Enemy> {
-    var base = EnemyBase()
-    var enemyBase = base.CreateBase(mutableListOf<Enemy>())
+fun createEnemyBase(name: String): MutableList<Enemy> {
+    val base = EnemyBase()
+    val enemyBase = base.createBase(mutableListOf<Enemy>())
     return enemyBase
 }
 
 // fun readFileLineByLineUsingForEachLine(fileName: String) = File(fileName).forEachLine { println(it) }
 
-fun ScannerScan(enemyBase: MutableList<Enemy>) {
+fun scannerScan(enemyBase: MutableList<Enemy>) {
     try {
         val fileName = "src//MyGame//OtherFiles//enemyList"
         var indexOfNinjaUnit = 1
@@ -38,11 +33,11 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
         File(fileName).forEachLine {
             when {
                 it == "NINJA" -> {
-                    Create_Ninja("NINJA$indexOfNinjaUnit", enemyBase); indexOfNinjaUnit++
+                    createNinja("NINJA$indexOfNinjaUnit", enemyBase); indexOfNinjaUnit++
                 };
 
                 it == "NANO_ROBOT" -> {
-                    Create_Nano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++
+                    create_Nano("NANO_ROBOT$indexOfNanoUnit", enemyBase); indexOfNanoUnit++
                 }
             }
 
@@ -53,8 +48,8 @@ fun ScannerScan(enemyBase: MutableList<Enemy>) {
     }
 }
 
-fun PlayGame(enemyBase: MutableList<Enemy>) {
-    val player = Create_Player()
+fun playGame(enemyBase: MutableList<Enemy>) {
+    val player = createPlayer()
     var index = 1
     for (el in enemyBase) {
         print("$index - ${el.name}. ")
@@ -64,26 +59,26 @@ fun PlayGame(enemyBase: MutableList<Enemy>) {
     println("Total Enemys: ${index - 1}")
     print("Press 'Enter'")
     System.`in`.read()
-    Batle(player, enemyBase)
+    batle(player, enemyBase)
 }
 
-fun Create_Player(): Player {
-    var player = Player("GFavaz", "NINJA")
+fun createPlayer(): Player {
+    val player = Player("GFavaz", "NINJA")
     return player
 }
 
-fun Create_Ninja(name: String, enemyBase: MutableList<Enemy>): Enemy {
-    var ninja = NinjaChar(name, "NINJA");
+fun createNinja(name: String, enemyBase: MutableList<Enemy>): Enemy {
+    val ninja = NinjaChar(name, "NINJA");
     enemyBase.add(ninja)
     return ninja
 }
 
-fun Create_Nano(name: String, enemyBase: MutableList<Enemy>): Enemy {
-    var NanoRobot = NanoRobotChar(name, "NANO_ROBOT");
+fun create_Nano(name: String, enemyBase: MutableList<Enemy>): Enemy {
+    val NanoRobot = NanoRobotChar(name, "NANO_ROBOT");
     enemyBase.add(NanoRobot)
     return NanoRobot
 }
 
-fun Batle(player: Player, enemyBase: MutableList<Enemy>) {
+fun batle(player: Player, enemyBase: MutableList<Enemy>) {
     Fight().Batle(player, enemyBase)
 }

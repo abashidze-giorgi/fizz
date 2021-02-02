@@ -3,8 +3,8 @@ package MyGame.Character
 class PlayerChar(val name: String, val weaknessEnemy: String) : MainChar() {
     //    val unit = "PLAYER"
     var health = Health() + BASE_HEALTH
-    var canDemage = Can_Damage() + BASE_CAN_DAMAGE
-    var getDamage = Get_Damage() + BASE_GET_DAMAGE
+    var canDemage = canDamage() + BASE_CAN_DAMAGE
+    var getDamage = getDamage() + BASE_GET_DAMAGE
     var shield = Shield() + BASE_SHIELD
 
     init {
